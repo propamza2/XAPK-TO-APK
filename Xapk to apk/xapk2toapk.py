@@ -4,7 +4,7 @@ import sys
 
 def xapk_to_apk(xapk_path):
     if not zipfile.is_zipfile(xapk_path):
-        print("❌ Geçerli bir XAPK değil:", xapk_path)
+        print("❌ Not supported xapk!", xapk_path)
         return
 
     base_dir = os.path.dirname(xapk_path)
@@ -12,7 +12,7 @@ def xapk_to_apk(xapk_path):
         # APK dosyasını bul
         apk_files = [f for f in z.namelist() if f.endswith(".apk")]
         if not apk_files:
-            print("❌ APK bulunamadı:", xapk_path)
+            print("❌ APK not found!:", xapk_path)
             return
         
         apk_name = os.path.basename(apk_files[0])
@@ -29,9 +29,9 @@ def xapk_to_apk(xapk_path):
             print("📂 OBB dosyaları bulundu, çıkarılıyor...")
             for f in obb_files:
                 z.extract(f, base_dir)
-            print(f"✅ OBB klasörü çıkarıldı: {os.path.join(base_dir, 'Android/obb')}")
+            print(f"✅ OBB found!: {os.path.join(base_dir, 'Android/obb')}")
         else:
-            print("ℹ️ OBB klasörü bulunamadı (belki oyun küçük).")
+            print("ℹ️ OBB not found (succefulcy!).")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
@@ -40,4 +40,5 @@ if __name__ == "__main__":
     else:
         for file in sys.argv[1:]:
             xapk_to_apk(file)
-        input("\nBitti! Çıkmak için Enter’a bas...")
+        input("\nSuccefly!")
+
